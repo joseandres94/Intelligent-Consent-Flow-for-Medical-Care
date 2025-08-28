@@ -20,7 +20,7 @@ A GenAI‑powered consent assistant that explains a medical procedure in plain l
 root/
 ├── api/                      # FastAPI service (api.py, routers/, schemas.py)
 │   ├── api.py                # FastAPI services definition
-│   ├── services/             # AI services
+│   └── services/             # AI services
 │      ├── ai_service.py      # LangGraph Agent
 │      └── tools.py           # OpenAI APIs
 ├── app/                      # Streamlit UI (app.py, utils, views)
@@ -29,9 +29,11 @@ root/
 │      ├── config.py          # App configuration and custom CSS
 │      ├── ui_helpers.py      # Helpers definition
 │      └── i18n.py            # Internazionalitation
-│   ├── views/                # Web app pages
+│   └── views/                # Web app pages
 │      ├── Chat.py            # Main page
 │      └── Home.py            # Home page                   
+├── data/                     # Data storage
+│   └── logs/                 # Logs storage     
 ├── main.py                   # Orchestrates API + UI processes
 ├── requirements.txt          # Python dependencies
 ├── .env.example              # Example environment configuration
@@ -43,8 +45,8 @@ root/
 ## Architecture
 ```
 ┌───────────────┐         voice/text         ┌─────────────────┐      REST/WebSocket       ┌───────────────────┐
-│   Streamlit   │ ─────────────────────────▶ │     FastAPI    │ ───────────────────────▶  │     OpenAI API    │
-│  (frontend)   │ ◀───── TTS playback ─────  │    (backend)   │ ◀─ transcripts / outputs─ │    (LLM/STT/TTS)  │
+│   Streamlit   │ ─────────────────────────▶ │     FastAPI    │ ───────────────────────▶  │    OpenAI API     │
+│  (frontend)   │ ◀───── TTS playback ─────  │    (backend)   │ ◀─ transcripts / outputs─ │   (LLM/STT/TTS)   │
 └───────────────┘                            └────────┬────────┘                           └───────────────────┘
                                                       │ event/log store
                                                       ▼ 
