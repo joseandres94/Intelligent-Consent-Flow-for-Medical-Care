@@ -42,12 +42,12 @@ root/
 
 ## Architecture
 ```
-┌───────────────┐         voice/text       ┌───────────────┐      REST/WebSocket       ┌───────────────┐
-│   Streamlit        │ ────────────────▶  │      FastAPI       │ ─────────────────▶  │     OpenAI API    │
-│  (frontend)        │ ◀── TTS playback ──── │      (backend)     │ ◀─ transcripts / outputs │    (LLM/STT/TTS)  │
-└───────────────┘                          └──────┬────────┘                           └───────────────┘
-                                                         │ event/log store
-                                                         ▼ 
+┌───────────────┐         voice/text         ┌─────────────────┐      REST/WebSocket       ┌───────────────────┐
+│   Streamlit   │ ─────────────────────────▶ │     FastAPI    │ ───────────────────────▶  │     OpenAI API    │
+│  (frontend)   │ ◀───── TTS playback ─────  │    (backend)   │ ◀─ transcripts / outputs─ │    (LLM/STT/TTS)  │
+└───────────────┘                            └────────┬────────┘                           └───────────────────┘
+                                                      │ event/log store
+                                                      ▼ 
 
 ```
 - **Streamlit** hosts the chat UI, microphone controls, language selector, and signature pad.
